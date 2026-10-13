@@ -1,0 +1,55 @@
+### 1. Tạo phòng (kỳ vọng 201)
+POST http://localhost:8080/api/rooms
+Content-Type: application/json
+
+{
+  "name": "Phòng A1",
+  "capacity": 4,
+  "type": "GROUP",
+  "pricePerHour": 50000
+}
+
+### 2. Lấy danh sách (kỳ vọng 200)
+GET http://localhost:8080/api/rooms
+
+### 3. Lấy chi tiết (kỳ vọng 200)
+GET http://localhost:8080/api/rooms/1
+
+### 4. Sửa phòng (kỳ vọng 200)
+PUT http://localhost:8080/api/rooms/1
+Content-Type: application/json
+
+{
+  "name": "Phòng A1 - VIP",
+  "capacity": 6,
+  "type": "MEETING",
+  "pricePerHour": 80000
+}
+
+### 5. Xóa phòng (kỳ vọng 204)
+DELETE http://localhost:8080/api/rooms/1
+
+### 6. Lỗi: tên rỗng và sức chứa 0 (kỳ vọng 400)
+POST http://localhost:8080/api/rooms
+Content-Type: application/json
+
+{
+  "name": "",
+  "capacity": 0,
+  "type": "GROUP",
+  "pricePerHour": 50000
+}
+
+### 7. Lỗi: không tìm thấy (kỳ vọng 404)
+GET http://localhost:8080/api/rooms/999
+
+### 8. Lỗi: trùng tên (kỳ vọng 409, chạy request 1 hai lần)
+POST http://localhost:8080/api/rooms
+Content-Type: application/json
+
+{
+  "name": "Phòng A1",
+  "capacity": 4,
+  "type": "GROUP",
+  "pricePerHour": 50000
+}
